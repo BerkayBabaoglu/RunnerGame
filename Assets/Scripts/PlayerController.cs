@@ -9,13 +9,10 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     bool canJump;
 
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        
     }
-
 
     void Start()
     {
@@ -25,11 +22,27 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && canJump)
         {
-            // jump
-
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpForce , ForceMode.Impulse);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Ground")
+        {
+            canJump = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.tag == "Ground")
+        {
+            canJump = false;
+        }
+
+                
     }
 }
