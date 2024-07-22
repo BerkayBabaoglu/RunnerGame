@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    Rigidbody rb;
+    public float jumpForce;
+    bool canJump;
+
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        
+    }
+
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        if (Input.GetMouseButton(0))
+        {
+            // jump
+
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 }
