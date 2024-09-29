@@ -17,21 +17,21 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
-    
+
     void Update()
     {
         if (Input.GetMouseButton(0) && canJump)
         {
-            rb.AddForce(Vector3.up * jumpForce , ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground")
         {
             canJump = true;
         }
@@ -39,10 +39,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if(collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground")
         {
             canJump = false;
-        }     
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -52,4 +52,13 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene(0);
         }
     }
+
+    private void OnTriggerEnter(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Obstacle")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
 }

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject obstacle;
     public Transform _spawnPoint;
     int score = 0;
+    
 
     public TextMeshProUGUI _scoreText;
     public GameObject _playButton;
